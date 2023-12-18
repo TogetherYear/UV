@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
 using System.Collections;
-using UnityEngine.InputSystem;
 
 public class TSceneManager : TSingleton<TSceneManager>
 {
@@ -72,7 +71,7 @@ public class TSceneManager : TSingleton<TSceneManager>
                 }
                 else
                 {
-                    if (Input.touchCount != 0 || Mouse.current.leftButton.isPressed)
+                    if (TExtensionTool.IsUserHold())
                     {
                         load.allowSceneActivation = true;
                         yield return null;
