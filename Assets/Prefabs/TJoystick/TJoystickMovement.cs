@@ -59,14 +59,14 @@ public class TJoystickMovement : MonoBehaviour, IBeginDragHandler, IDragHandler,
         float force = length / (originOSize.x / 2);
         Vector2 result = direction * length;
         i.anchoredPosition = result;
-        TInputManager.Instance.tc.movement = direction;
-        TInputManager.Instance.tc.forceMovement = direction * force;
+        TInputManager.Instance.mc.movement = direction;
+        TInputManager.Instance.mc.forceMovement = direction * force;
     }
 
     private void ResetIPosition()
     {
         i.anchoredPosition = Vector2.zero;
-        TInputManager.Instance.tc.forceMovement = Vector2.zero;
-        TInputManager.Instance.tc.movement = Vector2.zero;
+        TInputManager.Instance.mc.forceMovement = Vector2.zero;
+        TInputManager.Instance.mc.movement = Vector2.zero;
     }
 }

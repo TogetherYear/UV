@@ -9,7 +9,7 @@ public enum TInputKeyType
     Up
 }
 
-public class MouseControl
+public class DesktopControl
 {
     public bool isJump;
 
@@ -24,9 +24,21 @@ public class MouseControl
     public Vector2 rotate;
 
     public float scroll;
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        isJump = ctx.performed;
+        Jump?.Invoke(ctx.performed ? TInputKeyType.Down : TInputKeyType.Up);
+    }
+
+    public void OnAround(InputAction.CallbackContext ctx)
+    {
+        isAround = ctx.performed;
+        Around?.Invoke(ctx.performed ? TInputKeyType.Down : TInputKeyType.Up);
+    }
 }
 
-public class TouchControl
+public class MobileControl
 {
     public bool isDrag;
 
@@ -47,9 +59,9 @@ public class TInputManager : TSingleton<TInputManager>
 {
     private TInputActions inputActions;
 
-    public MouseControl mc = new MouseControl();
+    public DesktopControl dc = new DesktopControl();
 
-    public TouchControl tc = new TouchControl();
+    public MobileControl mc = new MobileControl();
 
     protected override void Awake()
     {
@@ -66,9 +78,9 @@ public class TInputManager : TSingleton<TInputManager>
 
     private void ReadValues()
     {
-        mc.movement = inputActions.General.Movement.ReadValue<Vector2>();
-        mc.rotate = inputActions.General.Rotate.ReadValue<Vector2>();
-        mc.scroll = inputActions.General.Scroll.ReadValue<float>();
+        dc.movement = inputActions.General.Movement.ReadValue<Vector2>();
+        dc.rotate = inputActions.General.Rotate.ReadValue<Vector2>();
+        dc.scroll = inputActions.General.Scroll.ReadValue<float>();
     }
 
     private void InitActions()
@@ -79,21 +91,9 @@ public class TInputManager : TSingleton<TInputManager>
 
     private void BindActions()
     {
-        inputActions.General.Jump.performed += OnJump;
-        inputActions.General.Jump.canceled += OnJump;
-        inputActions.General.Around.performed += OnAround;
-        inputActions.General.Around.canceled += OnAround;
-    }
-
-    private void OnJump(InputAction.CallbackContext ctx)
-    {
-        mc.isJump = ctx.performed;
-        mc.Jump?.Invoke(ctx.performed ? TInputKeyType.Down : TInputKeyType.Up);
-    }
-
-    private void OnAround(InputAction.CallbackContext ctx)
-    {
-        mc.isAround = ctx.performed;
-        mc.Around?.Invoke(ctx.performed ? TInputKeyType.Down : TInputKeyType.Up);
+        inputActions.General.Jump.performed += dc.OnJump;
+        inputActions.General.Jump.canceled += dc.OnJump;
+        inputActions.General.Around.performed += dc.OnAround;
+        inputActions.General.Around.canceled += dc.OnAround;
     }
 }
