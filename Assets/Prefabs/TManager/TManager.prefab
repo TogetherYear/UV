@@ -87,8 +87,6 @@ GameObject:
   - component: {fileID: 7014424913183307404}
   - component: {fileID: 7269788100061860667}
   - component: {fileID: 6724203998722720487}
-  - component: {fileID: 234386607524114727}
-  - component: {fileID: 6469844429294856265}
   - component: {fileID: 5175177604209356823}
   - component: {fileID: 7486294159902868544}
   - component: {fileID: 3317263621761652996}
@@ -159,30 +157,6 @@ MonoBehaviour:
     key: 0
   - name: Fracture
     key: 1
---- !u!114 &234386607524114727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416651953471647503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddd69a2fa84a365439a1a48d52897ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6469844429294856265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416651953471647503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d7f3374bee7624dbc71a89aee88d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &5175177604209356823
 Animator:
   serializedVersion: 5
