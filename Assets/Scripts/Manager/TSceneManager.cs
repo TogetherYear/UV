@@ -91,13 +91,13 @@ public class TSceneManager : TSingleton<TSceneManager>
     }
 
     /// <summary>
-    /// 切换场景
+    /// 切换场景异步
     /// </summary>
     /// <param name="key">场景枚举</param>
     /// <param name="Enter">是否加载完成后自动进入</param>
     /// <param name="OnFinish">加载完成后回调</param>
     /// <param name="autoEnter">是否自动进入</param>
-    public void LoadScene(TSceneKey key, Action OnFinish, bool autoEnter)
+    public void LoadSceneAsync(TSceneKey key, Action OnFinish, bool autoEnter)
     {
         string name = GetNameByKey(key);
         if (name == currentSceneName)
@@ -107,6 +107,23 @@ public class TSceneManager : TSingleton<TSceneManager>
         else
         {
             StartCoroutine(SwitchScene(name, OnFinish, autoEnter));
+        }
+    }
+
+    /// <summary>
+    /// 切换场景同步
+    /// </summary>
+    /// <param name="key">场景枚举</param>
+    public void LoadScene(TSceneKey key)
+    {
+        string name = GetNameByKey(key);
+        if (name == currentSceneName)
+        {
+            Debug.Log("不可加载同场景！");
+        }
+        else
+        {
+            SceneManager.LoadScene(name);
         }
     }
 }

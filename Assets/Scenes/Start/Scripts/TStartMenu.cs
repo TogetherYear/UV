@@ -14,7 +14,7 @@ public class TStartMenu : MonoBehaviour, IPointerClickHandler
     {
         if (RectTransformUtility.RectangleContainsScreenPoint(enter.rectTransform, e.position))
         {
-            TSceneManager.Instance.LoadScene(TSceneKey.Fracture, () => { }, false);
+            TSceneManager.Instance.LoadSceneAsync(TSceneKey.Fracture, () => { }, false);
         }
         else if (RectTransformUtility.RectangleContainsScreenPoint(exit.rectTransform, e.position))
         {
