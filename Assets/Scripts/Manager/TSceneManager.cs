@@ -138,7 +138,7 @@ public class TSceneManager : TSingleton<TSceneManager>
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class TSceneEntity
 {
     [Tooltip("关卡名称")]
