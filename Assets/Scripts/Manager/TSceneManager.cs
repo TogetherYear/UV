@@ -42,7 +42,7 @@ public class TSceneManager : TSingleton<TSceneManager>
     private string GetNameByKey(TSceneKey key)
     {
         var s = scenes.Find(s => s.key == key);
-        return s != null ? s.name : "Start";
+        return s?.name ?? scenes[0].name;
     }
 
     private IEnumerator SwitchScene(string name, Action OnFinish, bool autoEnter)
@@ -91,7 +91,7 @@ public class TSceneManager : TSingleton<TSceneManager>
     }
 
     /// <summary>
-    /// 切换场景异步
+    /// 切换场景
     /// </summary>
     /// <param name="key">场景枚举</param>
     /// <param name="Enter">是否加载完成后自动进入</param>
@@ -99,31 +99,41 @@ public class TSceneManager : TSingleton<TSceneManager>
     /// <param name="autoEnter">是否自动进入</param>
     public void LoadSceneAsync(TSceneKey key, Action OnFinish, bool autoEnter)
     {
-        string name = GetNameByKey(key);
-        if (name == currentSceneName)
+        var (v, n) = VerifyScene(key);
+        if (v)
         {
-            Debug.Log("不可加载同场景！");
-        }
-        else
-        {
-            StartCoroutine(SwitchScene(name, OnFinish, autoEnter));
+            StartCoroutine(SwitchScene(n, OnFinish, autoEnter));
         }
     }
 
-    /// <summary>
-    /// 切换场景同步
-    /// </summary>
-    /// <param name="key">场景枚举</param>
     public void LoadScene(TSceneKey key)
     {
-        string name = GetNameByKey(key);
-        if (name == currentSceneName)
+        var (v, n) = VerifyScene(key);
+        if (v)
         {
-            Debug.Log("不可加载同场景！");
+            SceneManager.LoadScene(n);
+        }
+    }
+
+    private (bool, string) VerifyScene(TSceneKey key)
+    {
+        if (scenes.Count == 0)
+        {
+            Debug.Log("请先配置场景！");
+            return (false, string.Empty);
         }
         else
         {
-            SceneManager.LoadScene(name);
+            string name = GetNameByKey(key);
+            if (name == currentSceneName)
+            {
+                Debug.Log("不可加载同场景！");
+                return (false, name);
+            }
+            else
+            {
+                return (true, name);
+            }
         }
     }
 }
