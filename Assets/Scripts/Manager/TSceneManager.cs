@@ -115,6 +115,11 @@ public class TSceneManager : TSingleton<TSceneManager>
         }
     }
 
+    public void RefreshCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private (bool, string) VerifyScene(TSceneKey key)
     {
         if (scenes.Count == 0)
