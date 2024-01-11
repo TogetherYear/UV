@@ -39,9 +39,7 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: c766d60b67904014ab78d1d8a5dccd33, type: 3}
-    duration: 2
+  m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1080
@@ -157,7 +155,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.TSingleton.UV
-    Standalone: com.Together.UV
+    Standalone: com.TSingleton.UV
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -282,7 +280,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: c766d60b67904014ab78d1d8a5dccd33, type: 3}
+      m_Icon: {fileID: 2800000, guid: 7209ffecd59d750429dcb3b7b75a49de, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -759,7 +757,9 @@ PlayerSettings:
     Android: 1
     Standalone: 1
   il2cppCompilerConfiguration:
-    Android: 1
+    Android: 2
+    Standalone: 2
+    WebGL: 2
   il2cppCodeGeneration:
     Android: 1
     Standalone: 1
