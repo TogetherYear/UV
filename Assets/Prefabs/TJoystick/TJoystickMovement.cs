@@ -17,7 +17,6 @@ public class TJoystickMovement : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private Vector2 centerPosition;
 
-
     private void Start()
     {
         originIPosition = o.anchoredPosition;
