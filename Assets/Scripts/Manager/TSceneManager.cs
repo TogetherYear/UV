@@ -33,7 +33,7 @@ public class TSceneManager : TSingleton<TSceneManager>
     {
         at.SetInteger("Status", (int)TSwitchSceneStatus.Reset);
         process = 0.0f;
-        percent.text = $"{process}";
+        percent.text = $"{process}%";
         at.SetFloat("Process", process);
     }
 
@@ -41,7 +41,7 @@ public class TSceneManager : TSingleton<TSceneManager>
     {
         at.SetInteger("Status", (int)TSwitchSceneStatus.Show);
         process = 0.0f;
-        percent.text = $"{process}";
+        percent.text = $"{process}%";
         at.SetFloat("Process", process);
     }
 
@@ -62,13 +62,13 @@ public class TSceneManager : TSingleton<TSceneManager>
             if (load.progress < 0.9f)
             {
                 process = load.progress * 100.0f;
-                percent.text = $"{process}";
+                percent.text = $"{process}%";
                 at.SetFloat("Process", process);
             }
             else
             {
                 process = 100.0f;
-                percent.text = $"{process}";
+                percent.text = $"{process}%";
                 at.SetFloat("Process", process);
                 if (autoEnter)
                 {
