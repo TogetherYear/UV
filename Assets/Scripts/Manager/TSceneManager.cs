@@ -14,6 +14,8 @@ public class TSceneManager : TSingleton<TSceneManager>
 
     public Text percent;
 
+    private float process;
+
     public List<TSceneEntity> scenes;
 
     protected override void Awake()
@@ -30,13 +32,17 @@ public class TSceneManager : TSingleton<TSceneManager>
     private void ResetCanvas()
     {
         at.SetInteger("Status", (int)TSwitchSceneStatus.Reset);
-        percent.text = "0.0%";
+        process = 0.0f;
+        percent.text = $"{process}";
+        at.SetFloat("Process", process);
     }
 
     private void ShowCanvas()
     {
         at.SetInteger("Status", (int)TSwitchSceneStatus.Show);
-        percent.text = "0.0%";
+        process = 0.0f;
+        percent.text = $"{process}";
+        at.SetFloat("Process", process);
     }
 
     private string GetNameByKey(TSceneKey key)
@@ -55,11 +61,15 @@ public class TSceneManager : TSingleton<TSceneManager>
         {
             if (load.progress < 0.9f)
             {
-                percent.text = $"{load.progress * 100.0f}";
+                process = load.progress * 100.0f;
+                percent.text = $"{process}";
+                at.SetFloat("Process", process);
             }
             else
             {
-                percent.text = "100.0%";
+                process = 100.0f;
+                percent.text = $"{process}";
+                at.SetFloat("Process", process);
                 if (autoEnter)
                 {
                     yield return new WaitForSeconds(1.0f);
